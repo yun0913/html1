@@ -1,0 +1,233 @@
+/* Apple-like (light, frosted) */
+:root{
+  --bg: #f2f5f8;
+  --card: rgba(255,255,255,0.8);
+  --glass: rgba(255,255,255,0.6);
+  --accent: #007aff;
+  --muted: #6b7280;
+  --text: #0b1220;
+  /* dark theme vars (will apply when .dark on body) */
+  --dark-bg: #0b0f14;
+  --dark-card: rgba(20,24,30,0.6);
+  --dark-text: #e6eef6;
+  --coin-color: #FFD166;
+  --brick-color: #c2410c;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans TC', 'Helvetica Neue', Arial;
+  background: linear-gradient(180deg, var(--bg), #e9eef3);
+  color:var(--text);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:32px;
+}
+.container{
+  width:780px;
+  max-width:95vw;
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  border-radius:20px;
+  border:1px solid rgba(15,23,42,0.06);
+  padding:20px;
+  box-shadow: 0 6px 30px rgba(15,23,42,0.08);
+}
+
+/* dark mode by adding .dark to body */
+body.dark{
+  background: linear-gradient(180deg, var(--dark-bg), #071018);
+  color: var(--dark-text);
+}
+body.dark .container{
+  background: var(--dark-card);
+  border:1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 8px 40px rgba(2,6,23,0.6);
+}
+body.dark .reel{
+  background: linear-gradient(180deg,#0f1720,#071018);
+}
+body.dark .reel-item{filter: drop-shadow(0 6px 18px rgba(0,0,0,0.6));}
+body.dark .btn{box-shadow: 0 6px 18px rgba(0,0,0,0.6);}
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:6px 12px;
+}
+.topbar h1{
+  font-weight:700;
+  margin:0;
+  letter-spacing:0.6px;
+}
+.credits{font-weight:600;color:var(--muted)}
+.machine-area{display:flex;justify-content:center;padding:24px}
+.machine{
+  width:100%;
+  background: var(--card);
+  border-radius:14px;
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.panel{
+  display:flex;
+  gap:16px;
+  justify-content:center;
+  align-items:center;
+  padding:12px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.5), rgba(250,250,250,0.6));
+  border-radius:12px;
+}
+.reel{
+  width:150px;
+  height:150px;
+  background: linear-gradient(180deg,#ffffff,#f7fbff);
+  border-radius:16px;
+  border:1px solid rgba(15,23,42,0.06);
+  display:flex;
+  align-items:flex-start;
+  justify-content:flex-start;
+  position:relative;
+  overflow:hidden;
+}
+.reel::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.2), rgba(255,255,255,0));
+  pointer-events:none;
+}
+
+.reel-track{
+  display:flex;
+  flex-direction:column;
+  width:100%;
+  will-change: transform;
+}
+.reel-item{
+  width:100%;
+  height:150px; /* same as .reel height */
+  object-fit:contain;
+  display:block;
+  margin:0 auto;
+  padding:12px 0;
+}
+.controls{display:flex;gap:12px;align-items:center;justify-content:center;margin-top:6px}
+.btn{
+  background: linear-gradient(180deg,var(--accent), #0051d4);
+  color:#fff;
+  border:none;
+  padding:10px 18px;
+  font-weight:700;
+  border-radius:12px;
+  cursor:pointer;
+  box-shadow: 0 6px 18px rgba(3,102,214,0.18);
+}
+.lever{
+  background:transparent;
+  color:var(--accent);
+  border:1px solid rgba(0,122,255,0.12);
+  padding:8px 12px;
+  border-radius:10px;
+  cursor:pointer;
+  transform-origin:top center;
+}
+.info{display:flex;justify-content:space-between;align-items:center;margin-top:6px;padding:6px 10px}
+#message{font-weight:700;color:var(--muted)}
+.payouts{font-size:13px;color:var(--muted);text-align:right}
+.footer{padding:8px;text-align:center;color:var(--muted)}
+
+/* effects layer */
+#effects{
+  position:fixed;
+  pointer-events:none;
+  inset:0;
+  z-index:9999;
+}
+
+/* coin */
+.coin{
+  position:absolute;
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  background: var(--coin-color);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.35);
+  transform-origin:center;
+  will-change: transform, opacity;
+}
+@keyframes coinFall{
+  0%{transform: translateY(-40vh) rotate(0deg); opacity:1}
+  70%{opacity:1}
+  100%{transform: translateY(110vh) rotate(720deg); opacity:0}
+}
+
+/* brick */
+.brick{
+  position:absolute;
+  width:48px;
+  height:28px;
+  background: var(--brick-color);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.5);
+  transform-origin:center;
+}
+@keyframes brickFall{
+  0%{transform: translateY(-40vh) rotate(-10deg); opacity:1}
+  100%{transform: translateY(80vh) rotate(40deg); opacity:1}
+}
+
+/* --- Game specific styles --- */
+.game-wrap{
+  width:980px;
+  max-width:96vw;
+  margin:28px auto;
+  padding:18px;
+  border-radius:18px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+.game-topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:8px 14px;
+}
+.brand{
+  font-weight:700;
+  font-size:20px;
+  color:var(--accent);
+}
+.hud{display:flex;gap:14px;align-items:center}
+.hud .score, .hud .lives{color:var(--dark-text);font-weight:600}
+.game-area{position:relative;display:flex;justify-content:center;padding:12px}
+.game-area{position:relative;display:flex;justify-content:center;padding:12px}
+#gameCanvas{border-radius:12px;background:linear-gradient(180deg,#071018,#001018);box-shadow:0 10px 30px rgba(0,0,0,0.6);display:block}
+.overlay{position:absolute;top:18px;left:18px;display:flex;flex-direction:column;gap:8px}
+.btn{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px 14px;border-radius:12px;color:var(--dark-text);cursor:pointer}
+.btn.primary{background:linear-gradient(180deg,var(--accent),#0051d4);color:#fff;border:none}
+.hint{color:rgba(255,255,255,0.6);font-size:13px;margin-top:6px}
+.game-footer{text-align:center;padding:10px;color:rgba(255,255,255,0.5)}
+
+/* HUD tweaks */
+.hud{align-items:center}
+.hud .highscore{margin-left:10px;color:rgba(255,255,255,0.7)}
+
+/* help modal */
+.help-modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(2,6,23,0.6);z-index:10000}
+.help-modal[aria-hidden="false"]{display:flex}
+.help-card{background:var(--dark-card);padding:20px;border-radius:12px;max-width:480px;color:var(--dark-text);box-shadow:0 12px 40px rgba(0,0,0,0.6)}
+.help-card h2{margin-top:0}
+.help-card ul{padding-left:18px}
+
+/* 響應式 */
+@media (max-width:720px){
+  .panel{flex-direction:column}
+  .reel{width:72vw;height:72vw;font-size:8vw}
+}

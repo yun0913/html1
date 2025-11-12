@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-Hant">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>iShooter — Apple 風格射擊遊戲</title>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body class="dark">
+		<div class="game-wrap">
+					<header class="game-topbar">
+						<div class="brand">iShooter</div>
+						<div class="hud">
+							<div class="score">Score: <span id="score">0</span></div>
+							<div class="lives">Lives: <span id="lives">3</span></div>
+							<div class="highscore">Best: <span id="highscore">0</span></div>
+							<button id="pauseBtn" class="btn">暫停</button>
+							<button id="helpBtn" class="btn">說明</button>
+						</div>
+					</header>
+
+			<main class="game-area">
+				<canvas id="gameCanvas" width="900" height="560" aria-label="射擊遊戲畫布"></canvas>
+						<div class="overlay">
+							<button id="startBtn" class="btn primary">開始遊戲</button>
+							<button id="restartBtn" class="btn" style="display:none">重新開始</button>
+							<p class="hint">← → 或 A/D 移動，空白鍵 或 滑鼠點擊 發射；Shift 衝刺；Z 特殊彈藥</p>
+						</div>
+			</main>
+
+			<div id="effects" aria-hidden="true"></div>
+					<!-- 說明 modal -->
+					<div id="helpModal" class="help-modal" role="dialog" aria-hidden="true">
+						<div class="help-card">
+							<h2>遊戲說明</h2>
+							<ul>
+								<li>左右移動：← → 或 A / D</li>
+								<li>射擊：空白鍵或點擊畫布</li>
+								<li>衝刺：按住 Shift（有冷卻）</li>
+								<li>特殊彈藥：按 Z（需拾取或取得）</li>
+								<li>收集掉落的道具以獲得生命、特殊彈藥或暫時效果</li>
+							</ul>
+							<button id="closeHelp" class="btn">關閉</button>
+						</div>
+					</div>
+
+			<footer class="game-footer">
+				<small>Apple-like UI • HTML5 Canvas 遊戲範例</small>
+			</footer>
+		</div>
+
+		<script src="script.js"></script>
+	</body>
+</html>
