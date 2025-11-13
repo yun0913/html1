@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Apex Shooter — Apple 風格靜態射擊遊戲</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">Apex<span class="dot">•</span>Shooter</div>
+    <div class="header-actions">
+      <button id="themeToggle" class="btn theme-toggle" aria-label="切換主題" title="切換主題">
+        <!-- Sun (light) -->
+        <span class="icon sun" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 4V2M12 22v-2M4.93 4.93L3.51 3.51M20.49 20.49l-1.42-1.42M4 12H2M22 12h-2M4.93 19.07l-1.42 1.42M20.49 3.51l-1.42 1.42" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
+        </span>
+        <!-- Moon (dark) -->
+        <span class="icon moon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h1 class="title">Apex Shooter</h1>
+      <p class="lead">極簡 Apple 風格的 Canvas 射擊小遊戲：左右移動、空格射擊。支援鍵盤與滑鼠（觸控友好）。</p>
+
+      <div class="controls">
+        <div class="status">
+          <div class="score-wrap">
+            <span>分數：<strong id="score">0</strong></span>
+            <span class="sep">•</span>
+            <span>最高分：<strong id="highScore">0</strong></span>
+          </div>
+          <span id="message" class="message"></span>
+        </div>
+
+        <div class="buttons">
+          <button id="startBtn" class="btn primary">開始遊戲</button>
+          <button id="pauseBtn" class="btn">暫停</button>
+          <button id="restartBtn" class="btn">重新開始</button>
+        </div>
+      </div>
+
+      <div class="game-wrap">
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+      </div>
+
+      <!-- touch controls for mobile -->
+      <div class="touch-controls" aria-hidden="false">
+        <button id="touchLeft" class="touch-btn" aria-label="左移">◀</button>
+        <button id="touchFire" class="touch-btn fire" aria-label="射擊">●</button>
+        <button id="touchRight" class="touch-btn" aria-label="右移">▶</button>
+      </div>
+
+      <div class="hint">
+        <p>操作：左右鍵 / A D 移動，空白鍵發射。行動裝置請使用下方按鈕或點擊畫面兩側。</p>
+      </div>
+
+    </section>
+
+    <footer class="meta">
+      <p>靜態頁面（HTML/CSS/JS） • Apple-like 風格練習</p>
+    </footer>
+  </main>
+
+  <script src="js/game.js" defer></script>
+</body>
+</html>
